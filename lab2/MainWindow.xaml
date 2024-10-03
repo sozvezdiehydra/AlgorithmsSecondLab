@@ -6,8 +6,8 @@
         xmlns:oxy="http://oxyplot.org/wpf"
         xmlns:local="clr-namespace:lab2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1024" Width="1280">
+        Title="MainWindow" Height="720" Width="1280">
     <Grid>
-        <oxy:PlotView x:Name="plot" Background="Aqua" Model="{Binding PythagorasTreePlotModel}"/>
+        <oxy:PlotView x:Name="Plot" Background="#FFFACD" Model="{Binding SnowflakeCurvePlotModel}"/>
     </Grid>
 </Window>
