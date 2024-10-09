@@ -8,6 +8,6 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="720" Width="1280">
     <Grid>
-        <oxy:PlotView x:Name="Plot" Background="#FFFACD" Model="{Binding SnowflakeCurvePlotModel}"/>
+        <oxy:PlotView x:Name="Plot" Background="#FFFACD" Model="{Binding JuliaPlotModel}"/>
     </Grid>
 </Window>

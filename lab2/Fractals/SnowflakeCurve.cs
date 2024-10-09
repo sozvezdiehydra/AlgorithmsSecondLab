@@ -20,6 +20,7 @@ public class SnowflakeCurve : Algorithms
         this.y2 = y2;
         this.iterations = iterations;
     }
+
     public override void Draw(PlotModel plotModel)
     {
         var lineSeries = new LineSeries();
@@ -29,6 +30,7 @@ public class SnowflakeCurve : Algorithms
 
     private void DrawSnowflakeCurve(LineSeries lineSeries, double x1, double y1, double x2, double y2, int iterations)
     {
+        // recursion exit
         if (iterations == 0)
         {
             lineSeries.Points.Add(new DataPoint(x1, y1));
@@ -45,11 +47,11 @@ public class SnowflakeCurve : Algorithms
         double dx = x4 - x3;
         double dy = y4 - y3;
 
-        double x5 = x3 - dy + (dx * Math.Cos(Math.PI / 3) + dy * Math.Sin(Math.PI / 3));
-        double y5 = y3 + dx + (dx * Math.Sin(Math.PI / 3) + dy * Math.Cos(Math.PI / 3));
+        double x5 = x3 - dy + (dx * Math.Cos(Math.PI / 4) + dy * Math.Sin(Math.PI / 4));
+        double y5 = y3 + dx + (dx * Math.Sin(Math.PI / 4) + dy * Math.Cos(Math.PI / 4));
 
-        double x6 = x3 + dy + (dx * Math.Cos(Math.PI / 3) - dy * Math.Sin(Math.PI / 3));
-        double y6 = y3 - dx + (dx * Math.Sin(Math.PI / 3) - dy * Math.Cos(Math.PI / 3));
+        double x6 = x3 + dy + (dx * Math.Cos(Math.PI / 4) - dy * Math.Sin(Math.PI / 4));
+        double y6 = y3 - dx + (dx * Math.Sin(Math.PI / 4) - dy * Math.Cos(Math.PI / 4));
 
         DrawSnowflakeCurve(lineSeries, x1, y1, x3, y3, iterations - 1);
         lineSeries.Points.Add(new DataPoint(double.NaN, double.NaN)); // Добавляем разрыв между линиями

@@ -40,7 +40,6 @@ public class PythagorasTreeFractal : Algorithms
         lineSeries.Points.Add(new DataPoint(x2, y2));
         lineSeries.Points.Add(new DataPoint(double.NaN, double.NaN));
         
-        
         DrawPythagorasTree(lineSeries, x2, y2, length * 0.5, angle + Math.PI / 8, iterations - 1);
         DrawPythagorasTree(lineSeries, x2, y2, length * 0.5, angle - Math.PI / 8, iterations - 1);
         
