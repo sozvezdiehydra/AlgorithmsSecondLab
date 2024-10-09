@@ -22,11 +22,11 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
 
-        /*var pythagorasTree = new PythagorasTreeFractal(0, 0, 100, -Math.PI / 2, 10);
+        var pythagorasTree = new PythagorasTreeFractal(0, 0, 100, -Math.PI / 2, 10);
         var plotModel = new PlotModel();
         pythagorasTree.Draw(plotModel);
         DataContext = this;
-        PythagorasTreePlotModel = plotModel;*/
+        PythagorasTreePlotModel = plotModel;
 
         /*var snowflakeCurve = new SnowflakeCurve(0, 0, 10, 10, 5);
         var plotModel = new PlotModel();
@@ -34,16 +34,14 @@ public partial class MainWindow : Window
         DataContext = this;
         SnowflakeCurvePlotModel = plotModel;*/
 
-        var julia = new Julia(-0.7, 0.27015, -1.5, 1.5, -1.5, 1.5, 50);
+        /*var julia = new Julia(-0.7, 0.27015, -1.5, 1.5, -1.5, 1.5, 50);
         var plotModel = new PlotModel();
         julia.Draw(plotModel);
         DataContext = this;
-        JuliaPlotModel = plotModel;
+        JuliaPlotModel = plotModel;*/
     }
 
     public PlotModel JuliaPlotModel { get; set; }
     public PlotModel SnowflakeCurvePlotModel { get; set; }
-    
-    //public PlotModel SnowflakeCurvePlotModel { get; set; }
     public PlotModel PythagorasTreePlotModel { get; set; }
 }

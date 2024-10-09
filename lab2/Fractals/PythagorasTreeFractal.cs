@@ -28,21 +28,24 @@ public class PythagorasTreeFractal : Algorithms
 
     private void DrawPythagorasTree(LineSeries lineSeries, double x1, double y1, double length, double angle, double iterations)
     {
-        if (iterations == 0)
+        if (iterations == 0 || length < 0.01)
         {
             return;
         }
-        
-        double x2 = x1 + iterations * Math.Cos(angle);
-        double y2 = y1 - iterations * Math.Sin(angle);
-        
+
+        // Вычисляем конечные координаты ветви
+        double x2 = x1 + length * Math.Cos(angle);
+        double y2 = y1 - length * Math.Sin(angle);
+
+        // Добавляем линию в LineSeries
         lineSeries.Points.Add(new DataPoint(x1, y1));
         lineSeries.Points.Add(new DataPoint(x2, y2));
-        lineSeries.Points.Add(new DataPoint(double.NaN, double.NaN));
-        
-        DrawPythagorasTree(lineSeries, x2, y2, length * 0.5, angle + Math.PI / 8, iterations - 1);
-        DrawPythagorasTree(lineSeries, x2, y2, length * 0.5, angle - Math.PI / 8, iterations - 1);
-        
-    }
 
+        // Рекурсивно рисуем левую и правую ветви
+        double newLength = length * 0.7; // Уменьшаем длину для каждой новой ветви
+        double deltaAngle = Math.PI / 4; // Угол наклона для новых ветвей
+
+        DrawPythagorasTree(lineSeries, x2, y2, newLength, angle + deltaAngle, iterations - 1);
+        DrawPythagorasTree(lineSeries, x2, y2, newLength, angle - deltaAngle, iterations - 1);
+    }
 }
