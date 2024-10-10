@@ -1,9 +1,9 @@
-﻿using lab2.AbstactClasses;
-using OxyPlot;
+﻿using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Series;
 
-namespace lab2.Fractals;
+namespace Fractals;
+using AbstractClasses;
 
 public class PythagorasTreeFractal : Algorithms
 {

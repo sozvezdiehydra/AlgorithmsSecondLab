@@ -1,6 +1,6 @@
 ﻿using OxyPlot;
 
-namespace lab2.AbstactClasses;
+namespace AbstractClasses;
 
 public abstract class Algorithms
 {

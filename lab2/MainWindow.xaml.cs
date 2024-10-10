@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using lab2.DrawClasses;
+using DrawClasses;
 
 
 namespace lab2;

@@ -1,9 +1,9 @@
 ﻿using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Series;
-using lab2.AbstactClasses;
 
-namespace lab2.Fractals;
+namespace Fractals;
+using AbstractClasses;
 
 public class SnowflakeCurve : Algorithms
 {

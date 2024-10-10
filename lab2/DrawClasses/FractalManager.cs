@@ -1,8 +1,8 @@
 ﻿using OxyPlot.Wpf;
 using System.Windows.Controls;
-using lab2.Fractals;
+using Fractals;
 using OxyPlot;
-namespace lab2.DrawClasses;
+namespace DrawClasses;
 
 public class FractalManager
 {
@@ -24,7 +24,7 @@ public class FractalManager
         }
 
         plot.Model = plotModel;
-        plot.InvalidatePlot(true);
+        plot.InvalidatePlot();
     }
 
     private void DrawJuliaFractal(PlotModel plotModel)

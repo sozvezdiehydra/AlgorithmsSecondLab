@@ -1,11 +1,11 @@
 ﻿using OxyPlot;
 using OxyPlot.Series;
 using OxyPlot.Axes;
-using lab2.AbstactClasses;
 
-namespace lab2.Fractals
-{
-    public class Julia : Algorithms
+namespace Fractals;
+using AbstractClasses;
+
+public class Julia : Algorithms
     {
         private readonly double cReal; // real part
         private readonly double cImag; // imagine part
@@ -93,4 +93,3 @@ namespace lab2.Fractals
             return iteration;
         }
     }
-}
