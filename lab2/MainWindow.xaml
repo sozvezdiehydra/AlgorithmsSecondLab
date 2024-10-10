@@ -17,7 +17,7 @@
             </ComboBox>
             
             <!-- Окно отображения фрактала -->
-            <oxy:PlotView x:Name="Plot" Background="Black" Width="1280" Height="720" />
+            <oxy:PlotView x:Name="Plot" Background="White" Width="1280" Height="720" />
         </StackPanel>
     </Grid>
 </Window>
