@@ -12,17 +12,17 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-        fractalManager = new FractalManager(); // Инициализация FractalManager
+        fractalManager = new FractalManager();
     }
         
     private void OnFractalSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         var comboBox = sender as ComboBox;
-        var selectedItem = comboBox.SelectedItem as ComboBoxItem;
+        var selectedItem = comboBox?.SelectedItem as ComboBoxItem;
 
         if (selectedItem != null)
         {
-            fractalManager.DrawFractal(selectedItem, Plot); // Передаем выбранный элемент и Plot
+            fractalManager.DrawFractal(selectedItem, Plot);
         }
     }
 }
