@@ -1,7 +1,6 @@
 ﻿using OxyPlot;
 using OxyPlot.Series;
 using OxyPlot.Axes;
-
 namespace Fractals;
 using AbstractClasses;
 
