@@ -1,19 +1,16 @@
 ﻿using OxyPlot;
 using OxyPlot.Series;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using OxyPlot.Axes;
+using lab2.AbstactClasses;
 
 namespace lab2.Fractals
 {
     public class Julia : Algorithms
     {
-        private readonly double cReal; // Вещественная часть комплексного числа
-        private readonly double cImag; // Мнимая часть комплексного числа
-        private readonly int maxIterations; // Максимальное количество итераций
-        private readonly double xMin, xMax, yMin, yMax; // Границы области для отображения фрактала
+        private readonly double cReal; // real part
+        private readonly double cImag; // imagine part
+        private readonly int maxIterations;
+        private readonly double xMin, xMax, yMin, yMax;
 
         public Julia(double cReal, double cImag, double xMin, double xMax, double yMin, double yMax, int maxIterations)
         {
@@ -26,37 +23,60 @@ namespace lab2.Fractals
             this.maxIterations = maxIterations;
         }
 
-        // Переопределение метода Draw
+        // override draw
         public override void Draw(PlotModel plotModel)
         {
+            // delete x axis
+            var xAxis = new LinearAxis
+            {
+                Position = AxisPosition.Bottom,
+                MajorGridlineStyle = LineStyle.None,
+                MinorGridlineStyle = LineStyle.None,
+                TickStyle = TickStyle.None,
+                LabelFormatter = _ => string.Empty
+            };
+            // delete y axis
+            var yAxis = new LinearAxis
+            {
+                Position = AxisPosition.Left,
+                MajorGridlineStyle = LineStyle.None,
+                MinorGridlineStyle = LineStyle.None,
+                TickStyle = TickStyle.None,
+                LabelFormatter = _ => string.Empty
+            };
+            
+            // color axis
+            var colorAxis = new LinearColorAxis
+            {
+                Position = AxisPosition.Right,
+                Palette = OxyPalettes.Hot(maxIterations),
+                Minimum = 0,
+                Maximum = maxIterations,
+                IsAxisVisible = false
+            };
+            
+            plotModel.Axes.Add(xAxis);
+            plotModel.Axes.Add(yAxis);
+            plotModel.Axes.Add(colorAxis);
+
             var scatterSeries = new ScatterSeries { MarkerType = MarkerType.Circle, MarkerSize = 1 };
             DrawJulia(scatterSeries, xMin, xMax, yMin, yMax, maxIterations);
             plotModel.Series.Add(scatterSeries);
         }
-
-        // Рекурсивная функция для рисования фрактала Жюлиа
+        
         private void DrawJulia(ScatterSeries scatterSeries, double x1, double x2, double y1, double y2, int iterations)
         {
-            if (iterations == 0)
+            for (double x = x1; x <= x2; x += 0.005)
             {
-                return;
-            }
-
-            // Проверяем координаты, чтобы получить точки для фрактала
-            for (double x = x1; x <= x2; x += 0.005) // шаг для X
-            {
-                for (double y = y1; y <= y2; y += 0.005) // шаг для Y
+                for (double y = y1; y <= y2; y += 0.005)
                 {
-                    if (IsInJuliaSet(x, y))
-                    {
-                        scatterSeries.Points.Add(new ScatterPoint(x, y));
-                    }
+                    int iterCount = GetJuliaIterations(x, y);
+                    scatterSeries.Points.Add(new ScatterPoint(x, y, 1, iterCount));
                 }
             }
         }
-
-        // Проверка, входит ли точка в фрактал Жюлиа
-        private bool IsInJuliaSet(double x, double y)
+        
+        private int GetJuliaIterations(double x, double y)
         {
             double zx = x;
             double zy = y;
@@ -69,8 +89,8 @@ namespace lab2.Fractals
                 zx = tempX;
                 iteration++;
             }
-
-            return iteration == maxIterations;
+            
+            return iteration;
         }
     }
 }

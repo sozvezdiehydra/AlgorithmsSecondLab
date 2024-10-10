@@ -8,6 +8,16 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="720" Width="1280">
     <Grid>
-        <oxy:PlotView x:Name="Plot" Background="#FFFACD" Model="{Binding PythagorasTreePlotModel}"/>
+        <StackPanel>
+            <!-- Выпадающий список для выбора фрактала -->
+            <ComboBox x:Name="FractalComboBox" SelectionChanged="OnFractalSelectionChanged">
+                <ComboBoxItem Content="Julia Fractal"/>
+                <ComboBoxItem Content="Pythagoras Tree"/>
+                <ComboBoxItem Content="Snowflake Curve"/>
+            </ComboBox>
+            
+            <!-- Окно отображения фрактала -->
+            <oxy:PlotView x:Name="Plot" Width="1280" Height="720" />
+        </StackPanel>
     </Grid>
 </Window>

@@ -1,8 +1,6 @@
-﻿using System.Windows.Media;
-using OxyPlot;
-using OxyPlot.Series;
+﻿using OxyPlot;
 
-namespace lab2;
+namespace lab2.AbstactClasses;
 
 public abstract class Algorithms
 {

@@ -1,15 +1,13 @@
 ﻿using OxyPlot;
+using OxyPlot.Axes;
 using OxyPlot.Series;
+using lab2.AbstactClasses;
 
 namespace lab2.Fractals;
 
 public class SnowflakeCurve : Algorithms
 {
-    private double x1;
-    private double y1;
-    private double x2;
-    private double y2;
-    //private double length;
+    private double x1, y1, x2, y2;
     private int iterations;
 
     public SnowflakeCurve(double x1, double y1, double x2, double y2, int iterations)
@@ -23,9 +21,32 @@ public class SnowflakeCurve : Algorithms
 
     public override void Draw(PlotModel plotModel)
     {
+        var linearAxis = new LinearAxis();
         var lineSeries = new LineSeries();
+        
+        // delete x axis
+        var xAxis = new LinearAxis
+        {
+            Position = AxisPosition.Bottom,
+            MajorGridlineStyle = LineStyle.None,
+            MinorGridlineStyle = LineStyle.None,
+            TickStyle = TickStyle.None,
+            LabelFormatter = _ => string.Empty
+        };
+        // delete y axis
+        var yAxis = new LinearAxis
+        {
+            Position = AxisPosition.Left,
+            MajorGridlineStyle = LineStyle.None,
+            MinorGridlineStyle = LineStyle.None,
+            TickStyle = TickStyle.None,
+            LabelFormatter = _ => string.Empty
+        };
+        
         DrawSnowflakeCurve(lineSeries, x1, y1, x2, y2, iterations);
         plotModel.Series.Add(lineSeries);
+        plotModel.Axes.Add(xAxis);
+        plotModel.Axes.Add(yAxis);
     }
 
     private void DrawSnowflakeCurve(LineSeries lineSeries, double x1, double y1, double x2, double y2, int iterations)

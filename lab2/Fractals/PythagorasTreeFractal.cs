@@ -1,5 +1,6 @@
-﻿using OxyPlot;
-using OxyPlot.Annotations;
+﻿using lab2.AbstactClasses;
+using OxyPlot;
+using OxyPlot.Axes;
 using OxyPlot.Series;
 
 namespace lab2.Fractals;
@@ -21,8 +22,31 @@ public class PythagorasTreeFractal : Algorithms
 
     public override void Draw(PlotModel plotModel)
     {
+        // delete x axis
+        var xAxis = new LinearAxis
+        {
+            Position = AxisPosition.Bottom,
+            MajorGridlineStyle = LineStyle.None,
+            MinorGridlineStyle = LineStyle.None,
+            TickStyle = TickStyle.None,
+            LabelFormatter = _ => string.Empty
+        };
+        // delete y axis
+        var yAxis = new LinearAxis
+        {
+            Position = AxisPosition.Left,
+            MajorGridlineStyle = LineStyle.None,
+            MinorGridlineStyle = LineStyle.None,
+            TickStyle = TickStyle.None,
+            LabelFormatter = _ => string.Empty
+        };
+        
         var lineSeries = new LineSeries();
+        lineSeries.Color = OxyColors.RosyBrown;
         DrawPythagorasTree(lineSeries, x1, y1, length, angle, iterations);
+        
+        plotModel.Axes.Add(xAxis);
+        plotModel.Axes.Add(yAxis);
         plotModel.Series.Add(lineSeries);
     }
 
