@@ -14,6 +14,7 @@
                 <ComboBoxItem Content="Julia Fractal"/>
                 <ComboBoxItem Content="Pythagoras Tree"/>
                 <ComboBoxItem Content="Snowflake Curve"/>
+                <ComboBoxItem Content="Hanoi Tower"/>
             </ComboBox>
             
             <!-- Окно отображения фрактала -->

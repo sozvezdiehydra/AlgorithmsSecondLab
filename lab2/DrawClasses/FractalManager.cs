@@ -1,6 +1,8 @@
 ﻿using OxyPlot.Wpf;
 using System.Windows.Controls;
+using AbstractClasses;
 using Fractals;
+using Models;
 using OxyPlot;
 namespace DrawClasses;
 
@@ -20,6 +22,9 @@ public class FractalManager
                 break;
             case "Snowflake Curve":
                 DrawSnowflakeCurve(plotModel);
+                break;
+            case "Hanoi Tower":
+                DrawHanoiTower(plotModel);
                 break;
         }
 
@@ -43,5 +48,11 @@ public class FractalManager
     {
         var snowflakeCurve = new SnowflakeCurve(0, 0, 10, 10, 5);
         snowflakeCurve.Draw(plotModel);
+    }
+
+    private void DrawHanoiTower(PlotModel plotModel)
+    {
+        var hanoiTowersRenderer = new Tower(plotModel);
+        hanoiTowersRenderer.DrawTowers();
     }
 }
