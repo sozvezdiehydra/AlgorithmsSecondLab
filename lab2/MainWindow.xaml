@@ -6,21 +6,39 @@
         xmlns:oxy="http://oxyplot.org/wpf"
         xmlns:local="clr-namespace:lab2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="720" Width="1280">
+        Title="Fractals" Height="720" Width="1280">
     <Grid>
-        <StackPanel>
-            <!-- Выпадающий список для выбора фрактала -->
-            <ComboBox x:Name="FractalComboBox" Background="Blue" SelectionChanged="OnFractalSelectionChanged">
-                <ComboBoxItem Content="Julia Fractal"/>
-                <ComboBoxItem Content="Pythagoras Tree"/>
-                <ComboBoxItem Content="Snowflake Curve"/>
-                <ComboBoxItem Content="Hanoi Tower"/>
-            </ComboBox>
-            <TextBox x:Name="Iterations" Text="Amount of Iterations" HorizontalAlignment="Center" FontFamily="Arial Black" TextChanged="Iterations_TextChanged"></TextBox>
-            <TextBox x:Name="Disks" Text="Amount of Disks" HorizontalAlignment="Center" FontFamily="Arial Black" TextChanged="Disks_TextChanged"></TextBox>
-            
-            <!-- Окно отображения фрактала -->
-            <oxy:PlotView x:Name="Plot" Background="White" Width="1280" Height="720" />
-        </StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Для ComboBox и TextBox -->
+            <RowDefinition Height="Auto"/>
+            <!-- Для для Amount of disks -->
+            <RowDefinition Height="Auto"/>
+            <!-- Для второго TextBox -->
+            <RowDefinition Height="*"/>
+            <!-- Для PlotView -->
+        </Grid.RowDefinitions>
+
+        <!-- Выпадающий список для выбора фрактала -->
+        <ComboBox x:Name="FractalComboBox" SelectionChanged="OnFractalSelectionChanged"
+                  HorizontalAlignment="Stretch" Margin="10">
+            <ComboBoxItem Content="Julia Fractal"/>
+            <ComboBoxItem Content="Pythagoras Tree"/>
+            <ComboBoxItem Content="Snowflake Curve"/>
+            <ComboBoxItem Content="Hanoi Tower"/>
+        </ComboBox>
+
+        <!-- TextBox для итераций -->
+        <TextBox x:Name="Iterations" Text="Amount of Iterations" 
+                 HorizontalAlignment="Stretch" FontFamily="Arial Black" 
+                 TextChanged="Iterations_TextChanged" Margin="10" Grid.Row="1"/>
+
+        <!-- TextBox для количества дисков -->
+        <TextBox x:Name="Disks" Text="Amount of Disks" 
+                 HorizontalAlignment="Stretch" FontFamily="Arial Black" 
+                 TextChanged="Disks_TextChanged" Margin="10" Grid.Row="2"/>
+
+        <!-- Окно отображения фрактала -->
+        <oxy:PlotView x:Name="Plot" Background="White" Grid.Row="3" />
     </Grid>
 </Window>

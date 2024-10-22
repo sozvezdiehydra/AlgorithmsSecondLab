@@ -30,6 +30,15 @@ public class Tower : Algorithms
             new Stack<int>()  // Tower 2 (target) starts empty
         };
 
+        int steps = CalculateHanoiSteps(numberOfDisks);
+        if(numberOfDisks == 2)
+        {
+            MessageBox.Show($"Для {numberOfDisks} дисков, нужно {steps} шага");
+        }
+        else
+        {
+            MessageBox.Show($"Для {numberOfDisks} дисков, нужно {steps} шагов");
+        }
         await MoveDisks(numberOfDisks, 0, 2, 1, towers, timeForDelay);
     }
 
