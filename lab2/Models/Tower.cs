@@ -16,36 +16,32 @@ public class Tower
 
     public void DrawTowers()
     {
-        plotModel.Series.Clear(); // Очищаем предыдущие серии
+        plotModel.Series.Clear(); // Clear previous series
 
-        // Задаем параметры для башен
-        double towerWidth = 5; // Ширина башни
-        double towerHeight = 7; // Высота башни
-        double towerSpacing = 3; // Расстояние между башнями
-        double baseY = 0; // Начальная Y позиция для башен
+        // Tower parameters
+        double towerWidth = 3;   // Width of the tower
+        double towerHeight = 7;  // Height of the tower
+        double towerSpacing = 15; // Spacing between the towers
+        double baseY = 0;         // Y position for the base of the towers
 
         for (int i = 0; i < 3; i++)
         {
-            double towerX = i * towerSpacing; // Позиция по оси X
+            double towerX = i * towerSpacing;
 
-            // Рисуем башню (прямоугольник)
             var towerLines = new LineSeries
             {
-                StrokeThickness = 1,
+                StrokeThickness = 2,
                 Color = OxyColors.Gray
             };
 
-
-            // Добавляем точки для рисования башни
-            towerLines.Points.Add(new DataPoint(towerX - towerWidth / 2, baseY)); // Bottom left
-            towerLines.Points.Add(new DataPoint(towerX - towerWidth / 2, baseY + towerHeight)); // Top left
-            towerLines.Points.Add(new DataPoint(towerX + towerWidth / 2, baseY + towerHeight)); // Top right
-            towerLines.Points.Add(new DataPoint(towerX + towerWidth / 2, baseY)); // Bottom right
-            towerLines.Points.Add(new DataPoint(towerX - towerWidth / 2, baseY)); // Closing the polygon
-
-            plotModel.Series.Add(towerLines); // Add the tower to the plot
+            towerLines.Points.Add(new DataPoint(towerX - towerWidth / 2, baseY));
+            towerLines.Points.Add(new DataPoint(towerX - towerWidth / 2, baseY + towerHeight));
+            towerLines.Points.Add(new DataPoint(towerX + towerWidth / 2, baseY + towerHeight));
+            towerLines.Points.Add(new DataPoint(towerX + towerWidth / 2, baseY));
+            towerLines.Points.Add(new DataPoint(towerX - towerWidth / 2, baseY));
+            plotModel.Series.Add(towerLines);
         }
 
-        plotModel.InvalidatePlot(true); // Обновляем график
+        plotModel.InvalidatePlot(true); // Update the plot to show changes
     }
 }
