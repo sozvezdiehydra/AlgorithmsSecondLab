@@ -20,37 +20,33 @@ public class SnowflakeCurve : Algorithms
 
     public override void Draw(PlotModel plotModel)
     {
-        var linearAxis = new LinearAxis();
         var lineSeries = new LineSeries();
-        
-        // delete x axis
-        var xAxis = new LinearAxis
-        {
-            Position = AxisPosition.Bottom,
-            MajorGridlineStyle = LineStyle.None,
-            MinorGridlineStyle = LineStyle.None,
-            TickStyle = TickStyle.None,
-            LabelFormatter = _ => string.Empty
-        };
-        // delete y axis
-        var yAxis = new LinearAxis
-        {
-            Position = AxisPosition.Left,
-            MajorGridlineStyle = LineStyle.None,
-            MinorGridlineStyle = LineStyle.None,
-            TickStyle = TickStyle.None,
-            LabelFormatter = _ => string.Empty
-        };
-        
+
+        // Рисуем первую сторону
         DrawSnowflakeCurve(lineSeries, x1, y1, x2, y2, iterations);
+        lineSeries.Points.Add(new DataPoint(double.NaN, double.NaN)); // Разрыв между линиями
+
+        // Вычисляем третью вершину равностороннего треугольника
+        double x3 = (x1 + x2) / 2 + Math.Sqrt(3) * (y1 - y2) / 2; // X координата третьей вершины
+        double y3 = (y1 + y2) / 2 + Math.Sqrt(3) * (x2 - x1) / 2; // Y координата третьей вершины
+
+        // Рисуем вторую сторону
+        DrawSnowflakeCurve(lineSeries, x2, y2, x3, y3, iterations);
+        lineSeries.Points.Add(new DataPoint(double.NaN, double.NaN)); // Разрыв между линиями
+
+        // Рисуем третью сторону
+        DrawSnowflakeCurve(lineSeries, x3, y3, x1, y1, iterations);
+
+        // Добавляем линию в модель графика
         plotModel.Series.Add(lineSeries);
-        plotModel.Axes.Add(xAxis);
-        plotModel.Axes.Add(yAxis);
+
+        // Добавляем оси
+        AddAxes(plotModel);
     }
 
     private void DrawSnowflakeCurve(LineSeries lineSeries, double x1, double y1, double x2, double y2, int iterations)
     {
-        // recursion exit
+        // Условие выхода из рекурсии
         if (iterations == 0)
         {
             lineSeries.Points.Add(new DataPoint(x1, y1));
@@ -67,18 +63,16 @@ public class SnowflakeCurve : Algorithms
         double dx = x4 - x3;
         double dy = y4 - y3;
 
-        double x5 = x3 - dy + (dx * Math.Cos(Math.PI / 4) + dy * Math.Sin(Math.PI / 4));
-        double y5 = y3 + dx + (dx * Math.Sin(Math.PI / 4) + dy * Math.Cos(Math.PI / 4));
-
-        double x6 = x3 + dy + (dx * Math.Cos(Math.PI / 4) - dy * Math.Sin(Math.PI / 4));
-        double y6 = y3 - dx + (dx * Math.Sin(Math.PI / 4) - dy * Math.Cos(Math.PI / 4));
+        // Вычисляем координаты "пиковой" точки
+        double x5 = x3 + dx / 2 - Math.Sqrt(3) * dy / 2; // Поворот на 60 градусов
+        double y5 = y3 + dy / 2 + Math.Sqrt(3) * dx / 2; // Поворот на 60 градусов
 
         DrawSnowflakeCurve(lineSeries, x1, y1, x3, y3, iterations - 1);
-        lineSeries.Points.Add(new DataPoint(double.NaN, double.NaN)); // Добавляем разрыв между линиями
+        lineSeries.Points.Add(new DataPoint(double.NaN, double.NaN)); // Разрыв между линиями
         DrawSnowflakeCurve(lineSeries, x3, y3, x5, y5, iterations - 1);
-        lineSeries.Points.Add(new DataPoint(double.NaN, double.NaN)); // Добавляем разрыв между линиями
+        lineSeries.Points.Add(new DataPoint(double.NaN, double.NaN)); // Разрыв между линиями
         DrawSnowflakeCurve(lineSeries, x5, y5, x4, y4, iterations - 1);
-        lineSeries.Points.Add(new DataPoint(double.NaN, double.NaN)); // Добавляем разрыв между линиями
+        lineSeries.Points.Add(new DataPoint(double.NaN, double.NaN)); // Разрыв между линиями
         DrawSnowflakeCurve(lineSeries, x4, y4, x2, y2, iterations - 1);
     }
 }

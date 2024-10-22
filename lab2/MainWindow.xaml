@@ -10,12 +10,14 @@
     <Grid>
         <StackPanel>
             <!-- Выпадающий список для выбора фрактала -->
-            <ComboBox x:Name="FractalComboBox" SelectionChanged="OnFractalSelectionChanged">
+            <ComboBox x:Name="FractalComboBox" Background="Blue" SelectionChanged="OnFractalSelectionChanged">
                 <ComboBoxItem Content="Julia Fractal"/>
                 <ComboBoxItem Content="Pythagoras Tree"/>
                 <ComboBoxItem Content="Snowflake Curve"/>
                 <ComboBoxItem Content="Hanoi Tower"/>
             </ComboBox>
+            <TextBox x:Name="Iterations" Text="Amount of Iterations" HorizontalAlignment="Center" FontFamily="Arial Black" TextChanged="Iterations_TextChanged"></TextBox>
+            <TextBox x:Name="Disks" Text="Amount of Disks" HorizontalAlignment="Center" FontFamily="Arial Black" TextChanged="Disks_TextChanged"></TextBox>
             
             <!-- Окно отображения фрактала -->
             <oxy:PlotView x:Name="Plot" Background="White" Width="1280" Height="720" />

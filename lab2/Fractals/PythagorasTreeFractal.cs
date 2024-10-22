@@ -21,31 +21,10 @@ public class PythagorasTreeFractal : Algorithms
 
     public override void Draw(PlotModel plotModel)
     {
-        // delete x axis
-        var xAxis = new LinearAxis
-        {
-            Position = AxisPosition.Bottom,
-            MajorGridlineStyle = LineStyle.None,
-            MinorGridlineStyle = LineStyle.None,
-            TickStyle = TickStyle.None,
-            LabelFormatter = _ => string.Empty
-        };
-        // delete y axis
-        var yAxis = new LinearAxis
-        {
-            Position = AxisPosition.Left,
-            MajorGridlineStyle = LineStyle.None,
-            MinorGridlineStyle = LineStyle.None,
-            TickStyle = TickStyle.None,
-            LabelFormatter = _ => string.Empty
-        };
-        
         var lineSeries = new LineSeries();
         lineSeries.Color = OxyColors.RosyBrown;
         DrawPythagorasTree(lineSeries, x1, y1, length, angle, iterations);
-        
-        plotModel.Axes.Add(xAxis);
-        plotModel.Axes.Add(yAxis);
+        AddAxes(plotModel);
         plotModel.Series.Add(lineSeries);
     }
 
@@ -63,6 +42,7 @@ public class PythagorasTreeFractal : Algorithms
         // Добавляем линию в LineSeries
         lineSeries.Points.Add(new DataPoint(x1, y1));
         lineSeries.Points.Add(new DataPoint(x2, y2));
+        lineSeries.Points.Add(new DataPoint(double.NaN, double.NaN));
 
         // Рекурсивно рисуем левую и правую ветви
         double newLength = length * 0.7; // Уменьшаем длину для каждой новой ветви
