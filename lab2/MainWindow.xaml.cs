@@ -1,6 +1,9 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using DrawClasses;
+using Models;
+using Models;
+using OxyPlot;
 
 
 namespace lab2;
@@ -10,11 +13,15 @@ public partial class MainWindow : Window
     private FractalManager fractalManager;
     private int iterations = 5; // default value
     private int disks = 2; // default value
+    private Tower tower;
 
     public MainWindow()
     {
         InitializeComponent();
         fractalManager = new FractalManager();
+        PlotModel plotModel = new PlotModel();
+        tower = new Tower(plotModel);
+        Plot.Model = plotModel;
     }
 
     private void OnFractalSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -49,5 +56,15 @@ public partial class MainWindow : Window
         {
             disks = 2;
         }
+    }
+    
+    private void OnStepForwardClick(object sender, RoutedEventArgs e)
+    {
+        tower.StepForward(); // Перемещение на шаг вперед
+    }
+
+    private void OnStepBackwardClick(object sender, RoutedEventArgs e)
+    {
+        tower.StepBackward(); // Перемещение на шаг назад
     }
 }

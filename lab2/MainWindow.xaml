@@ -14,6 +14,8 @@
             <RowDefinition Height="Auto"/>
             <!-- Для для Amount of disks -->
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <!-- Для второго TextBox -->
             <RowDefinition Height="*"/>
             <!-- Для PlotView -->
@@ -27,7 +29,7 @@
             <ComboBoxItem Content="Snowflake Curve"/>
             <ComboBoxItem Content="Hanoi Tower"/>
         </ComboBox>
-
+        
         <!-- TextBox для итераций -->
         <TextBox x:Name="Iterations" Text="Amount of Iterations" 
                  HorizontalAlignment="Stretch" FontFamily="Arial Black" 
@@ -38,7 +40,10 @@
                  HorizontalAlignment="Stretch" FontFamily="Arial Black" 
                  TextChanged="Disks_TextChanged" Margin="10" Grid.Row="2"/>
 
+        <Button Content="Назад" Click="OnStepBackwardClick" Grid.Row="3"/>
+        <Button Content="Вперед" Click="OnStepForwardClick" Grid.Row="4"/>
+
         <!-- Окно отображения фрактала -->
-        <oxy:PlotView x:Name="Plot" Background="White" Grid.Row="3" />
+        <oxy:PlotView x:Name="Plot" Background="White" Grid.Row="5" />
     </Grid>
 </Window>
