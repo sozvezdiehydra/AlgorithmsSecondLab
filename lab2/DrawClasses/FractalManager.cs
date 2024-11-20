@@ -12,7 +12,8 @@ public class FractalManager
     public void DrawFractal(ComboBoxItem selectedItem, PlotView plot, int iterations, int disks)
     {
         PlotModel plotModel = new PlotModel();
-        
+        PlotModel complexityPlotModel = new PlotModel();
+
         switch (selectedItem.Content.ToString())
         {
             case "Julia Fractal":
@@ -25,7 +26,7 @@ public class FractalManager
                 DrawSnowflakeCurve(plotModel, iterations);
                 break;
             case "Hanoi Tower":
-                DrawHanoiTower(plotModel, iterations, disks);
+                DrawHanoiTower(plotModel, complexityPlotModel, iterations, disks);
                 break;
         }
 
@@ -51,7 +52,7 @@ public class FractalManager
         snowflakeCurve.Draw(plotModel);
     }
 
-    private void DrawHanoiTower(PlotModel plotModel, int iterations, int disks)
+    private void DrawHanoiTower(PlotModel plotModel, PlotModel complexityPlotModel, int iterations, int disks)
     {
         var hanoiTowersRenderer = new Tower(plotModel);
         hanoiTowersRenderer.AnimateTowerOfHanoi(disks, iterations);

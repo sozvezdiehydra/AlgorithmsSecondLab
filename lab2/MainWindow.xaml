@@ -18,6 +18,7 @@
             <RowDefinition Height="Auto"/>
             <!-- Для второго TextBox -->
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
             <!-- Для PlotView -->
         </Grid.RowDefinitions>
 
@@ -45,5 +46,6 @@
 
         <!-- Окно отображения фрактала -->
         <oxy:PlotView x:Name="Plot" Background="White" Grid.Row="5" />
+        <oxy:PlotView x:Name="ComplexityPlotView" Grid.Row="6" Background="White" Visibility="Collapsed" />
     </Grid>
 </Window>

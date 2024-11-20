@@ -14,8 +14,7 @@ public class Tower : Algorithms
     private List<List<Stack<int>>> stepsList = new List<List<Stack<int>>>();
     private int currentStep = 0;
     private bool isPaused = false;
-
-
+    
     public Tower(PlotModel plotModel)
     {
         this.plotModel = plotModel;
@@ -48,6 +47,7 @@ public class Tower : Algorithms
         {
             MessageBox.Show($"Для {numberOfDisks} дисков, нужно {steps} шагов");
         }
+
         await MoveDisks(numberOfDisks, 0, 2, 1, towers, timeForDelay);
     }
 
